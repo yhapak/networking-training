@@ -1,0 +1,19 @@
+Parent network:
+201.45.222.0/24
+IP: 201.45.222.0 => 11001001.00101101.11011110.00000000
+Mask: 11111111.11111111.11111111.00000000
+
+To create subnet 6 for 100 hosts I divide parent network to 2 /25 subnets:
+- Count of possible hosts in subnet = 2^(32-25)-2 = 2^7 - 2 = 128-2 = 126 (126 > 100)
+1)11001001.00101101.11011110.0xxxxxxx => 201.45.222.0/25 (subnet 6)
+2)11001001.00101101.11011110.1xxxxxxx => 201.45.222.128/25
+ 	- To create subnet 5 for 50 hosts I divide second /25 subnet to 2 /26 subnets:
+	- Count of possible hosts in subnet = 2^(32-26)-2 = 2^6 - 2 = 64-2 = 62 (62 > 50)
+	1)11001001.00101101.11011110.10xxxxxx => 201.45.222.128/26 (subnet 5)
+	2)11001001.00101101.11011110.11xxxxxx => 201.45.222.192/26
+		- To create subnets 1,2,3 for 10 hosts each I divide second /26 subnet to 4 /28 subnets:
+		-Count of possible hosts in subnet = 2^(32-28)-2 = 2^4 - 2 = 16-2 = 14 (14 > 10)
+		1)11001001.00101101.11011110.1100xxxx => 201.45.222.192/28 (subnet 1)
+		2)11001001.00101101.11011110.1101xxxx => 201.45.222.208/28 (subnet 2)
+		3)11001001.00101101.11011110.1101xxxx => 201.45.222.224/28 (subnet 3)
+		4)11001001.00101101.11011110.1101xxxx => 201.45.222.240/28 (subnet 4)
